@@ -63,7 +63,7 @@ our @EXPORT_OK = ( @{$EXPORT_TAGS{'all'}} );
 
 our @EXPORT = qw();
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 sub AUTOLOAD {
@@ -127,11 +127,10 @@ sub new {
 }
 
 #-----------------------------------------------------------------------
-# Wrappers
+# Wrappers: start/stop
 #-----------------------------------------------------------------------
 *start = \&Start;
 *stop = \&Stop;
-*sync = \&Sync;
 *say_string = \&Say_String;
 *say_file = \&Say_File;
 
@@ -293,9 +292,9 @@ Perl interface to 'librsynth' Klatt-style speech synthesis C library.
   $hertz = $rs->samp_rate; $rs->samp_rate($hertz);  # get/set sample-rate
 
   # Accessors: Audio Filenames
-  $file = $rs->dev_filename;    $rs->dev_filename($file);     # get/set audio device filename
-  $file = $rs->linear_filename; $rs->linear_filename($file);  # get/set raw linear filename
-  $file = $rs->au_filename;     $rs->au_filename($file);      # get/set Sun/NeXT filename
+  $file = $rs->dev_file;    $rs->dev_file($file);     # get/set audio device filename
+  $file = $rs->linear_file; $rs->linear_file($file);  # get/set raw linear filename
+  $file = $rs->au_file;     $rs->au_file($file);      # get/set Sun/NeXT filename
 
   # Accessors: File Descriptors
   $fd = $rs->dev_fd;        $rs->dev_fd($fd);         # get/set audio device fd
@@ -442,11 +441,6 @@ librsynth documentation for details on recognized phone encodings.
 Synthesize speech from the text from FILEHANDLE, which should
 be a Perl filehandle open for reading.
 
-=item * sync()
-
-Synchronizes all output files associated with a running synthesizer.
-Subsequent data will be appended to those files.
-
 =item * stop()
 
 Stops the synthesizer and synchronizes all its data files.
@@ -548,19 +542,19 @@ Sample rate in Hz.  Default=8000.
 # Audio Filenames
 =pod
 
-=item * dev_filename
+=item * dev_file
 
  Type: string
 
 Audio device filename.  Default="/dev/dsp".
 
-=item * linear_filename
+=item * linear_file
 
  Type: string
 
 Filename for raw linear output.  Default=undef (none).
 
-=item * au_filename
+=item * au_file
 
  Type: string
 
@@ -610,7 +604,7 @@ Default=10.
 impulse glottal source.
 Default=0.
 
-=item *casc
+=item * casc
 
  Type: integer
 

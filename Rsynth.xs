@@ -22,8 +22,8 @@ typedef char *CharPtr;
 //#define RSXS_DEBUG_SV2C 1
 #undef RSXS_DEBUG_SV2C
 
-#define RSXS_DEBUG_CONFIGURE 1
-//#undef RSXS_DEBUG_CONFIGURE
+//#define RSXS_DEBUG_CONFIGURE 1
+#undef RSXS_DEBUG_CONFIGURE
 
 //#define RSXS_DEBUG_FILE 1
 #undef RSXS_DEBUG_FILE
@@ -31,10 +31,10 @@ typedef char *CharPtr;
 //#define RSXS_DEBUG_STRING 1
 #undef RSXS_DEBUG_STRING
 
-#define RSXS_DEBUG 1
-//#indef RSXS_DEBUG
+//#define RSXS_DEBUG 1
+#undef RSXS_DEBUG
 
-char * program = "rsynth-xs";
+//char * program = "rsynth-xs";
 
 
 
